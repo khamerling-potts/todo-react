@@ -95,8 +95,8 @@ class App extends Component {
     if (this.readyState === 4 && this.status === 200) {
       {console.log("ajax successful")}
       // If AJAX successful, parse the JSON and save to state
-      var myTodos = JSON.parse(this.responseText);
-      self.setState({myTodos: myTodos});
+      var todos = JSON.parse(this.responseText);
+      self.setState({todos: todos});
       {console.log("Requested todos: " + self.state.todos)}
     }
     
@@ -107,17 +107,17 @@ class App extends Component {
 
     // // Make API call to fetch existing Todos.
     // fetch('https://cse204.work/todos',{
-    //   method: 'GET',
-    //   headers:{
+    //   "method": "GET",
+    //   "headers":{
     //     'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
-    //     'Content-type': 'application/json'
+    //     //'Content-type': 'application/json'
     //   }
     // })
-    //I used Free Code Camp to understand processing response data
-      // .then(response=>response.json())
-      // .then((responseData)=>{
-      //   this.setState({todos: responseData});
-      // })
+    // //I used Free Code Camp to understand processing response data
+    //   .then(response=>response.json())
+    //   .then((responseData)=>{
+    //     this.setState({todos: responseData});
+    //   })
   //     .then(function (response) {
   //       self.setState({todos: JSON.parse(response)});
   //     }
