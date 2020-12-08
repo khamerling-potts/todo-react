@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.addTodo = this.addTodo.bind(this);
     
-    this.componentDidMount = this.componentDidMount.bind(this);
+    //this.componentDidMount = this.componentDidMount.bind(this);
     this.state = {
       todos: []
     }
@@ -66,14 +66,12 @@ class App extends Component {
       })
       // clear the input field
       self.setState({input: ''});
-  }
-
+  }     
+}
   createRequest.open("POST", "https://cse204.work/todos", true);
   createRequest.setRequestHeader("Content-type", "application/json");
   createRequest.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
   createRequest.send(JSON.stringify(newItem));
-        
-}
     // fetch('https://cse204.work/todos',{
     //   method: 'POST',
     //   headers:{
@@ -94,17 +92,18 @@ class App extends Component {
     // AJAX goes here
     var createRequest = new XMLHttpRequest();
     createRequest.onreadystatechange = function () {
-    if (self.readyState === 4 && self.status === 200) {
+    if (this.readyState === 4 && this.status === 200) {
       {console.log("ajax successful")}
       // If AJAX successful, parse the JSON and save to state
-      var myTodos = JSON.parse(self.responseText);
+      var myTodos = JSON.parse(this.responseText);
       self.setState({myTodos: myTodos});
       {console.log("Requested todos: " + self.state.todos)}
+    }
+    
     }
     createRequest.open("GET", "https://cse204.work/todos", true);
     createRequest.setRequestHeader("x-api-key","f32d02-3f32cc-c59414-4b288d-c7f6a6");
     createRequest.send();
-    }
 
     // // Make API call to fetch existing Todos.
     // fetch('https://cse204.work/todos',{
