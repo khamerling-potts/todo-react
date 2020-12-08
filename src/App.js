@@ -95,8 +95,8 @@ class App extends Component {
     createRequest.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       // If AJAX successful, parse the JSON and save to state
-      var todos = JSON.parse(this.responseText);
-      self.setState({todos: todos});
+      var myTodos = JSON.parse(self.responseText);
+      self.setState({todos: myTodos});
       {console.log("Requested todos: " + todos)}
     }
     createRequest.open("GET", "https://cse204.work/todos", true);
