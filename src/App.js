@@ -32,6 +32,7 @@ class App extends Component {
               <>
               {console.log(todo.id)}
               <Todo key={todo.id}
+                id = {todo.id}
                 text={todo.text} 
                 />
               </>
