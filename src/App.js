@@ -29,13 +29,10 @@ class App extends Component {
             <ul id="todoList">
               {console.log(this.state.todos)}
             {this.state.todos.map((todo) =>
-              <>
-              {console.log(todo.id)}
-              <Todo key={todo.id}
-                id = {todo.id}
-                text={todo.text} 
-                />
-              </>
+              
+              // {console.log(todo.id)},
+              <Todo key={todo.id} id={todo.id} text={todo.text} />
+              
             )}
             </ul>
           </section>
@@ -43,9 +40,10 @@ class App extends Component {
     );
   }
 
-  onChange(event) {
+  onChange = (event) =>{
     // Set the state to the value of the input
     const self = this;
+    //{console.log(event.target.value)}
     self.setState({
       input: event.target.value
     });
@@ -54,7 +52,7 @@ class App extends Component {
   addTodo(event){
     event.preventDefault();
     const self = this;
-    const newTodoText = this.state.input;
+    const newTodoText = self.state.input;
    //{console.log(event.target.id)}
     //{console.log(this.state.input)}
     var newItem = new Todo();
