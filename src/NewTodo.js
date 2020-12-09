@@ -10,7 +10,7 @@ class NewTodo extends Component {
             <form className="addform" id="addform" onSubmit = {this.props.addTodo}>
                 <label htmlFor="add" className="formlabel">To Do List</label>
                 <div className="input-group">
-                <input value={this.props.input} onChange={this.props.onChange} type="text" className="form-control" id="add" placeholder="New item"/>
+                <input value={this.props.input || ''} onChange={this.props.onChange} type="text" className="form-control" id="add" placeholder="New item"/>
                 <div className="input-group-addon">
                     <input type = "submit" value="Add Item" className = "addbutton"></input>
                 </div>

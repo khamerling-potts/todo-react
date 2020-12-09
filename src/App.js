@@ -45,7 +45,7 @@ class App extends Component {
     const self = this;
     //{console.log(event.target.value)}
     self.setState({
-      input: event.target.value
+      input: event.target.value 
     });
   }
 
@@ -55,12 +55,11 @@ class App extends Component {
     const newTodoText = self.state.input;
    //{console.log(event.target.id)}
     //{console.log(this.state.input)}
-    var newItem = new Todo();
-    newItem = {
+    var data = {
       text: newTodoText
     }
 
-    {console.log(newItem)}
+    {console.log(data)}
     //var self = this;
     var createRequest = new XMLHttpRequest();
     createRequest.onreadystatechange = function () {
@@ -76,7 +75,7 @@ class App extends Component {
   createRequest.open("POST", "https://cse204.work/todos", true);
   createRequest.setRequestHeader("Content-type", "application/json");
   createRequest.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
-  createRequest.send(JSON.stringify(newItem));
+  createRequest.send(JSON.stringify(data));
     // fetch('https://cse204.work/todos',{
     //   method: 'POST',
     //   headers:{
