@@ -30,8 +30,10 @@ class App extends Component {
               {console.log(this.state.todos)}
             {this.state.todos.map((todo) =>
               <>
+              {console.log(todo.id)}
               <Todo key={todo.id}
-                text={todo.text} />
+                text={todo.text} 
+                />
               </>
             )}
             </ul>
@@ -42,21 +44,25 @@ class App extends Component {
 
   onChange(event) {
     // Set the state to the value of the input
-    this.setState({
+    const self = this;
+    self.setState({
       input: event.target.value
     });
   }
 
   addTodo(event){
     event.preventDefault();
-    
+    const self = this;
     const newTodoText = this.state.input;
+   //{console.log(event.target.id)}
+    //{console.log(this.state.input)}
     var newItem = new Todo();
     newItem = {
       text: newTodoText
     }
 
-    var self = this;
+    {console.log(newItem)}
+    //var self = this;
     var createRequest = new XMLHttpRequest();
     createRequest.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
@@ -89,35 +95,35 @@ class App extends Component {
   componentDidMount() {
     {console.log("componentdidmount activated")}
     const self = this;
-    // AJAX goes here
-    var createRequest = new XMLHttpRequest();
-    createRequest.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      {console.log("ajax successful")}
-      // If AJAX successful, parse the JSON and save to state
-      var todos = JSON.parse(this.responseText);
-      self.setState({todos: todos});
-      {console.log("Requested todos: " + self.state.todos)}
-    }
+    // // AJAX goes here
+    // var createRequest = new XMLHttpRequest();
+    // createRequest.onreadystatechange = function () {
+    // if (this.readyState === 4 && this.status === 200) {
+    //   {console.log("ajax successful")}
+    //   // If AJAX successful, parse the JSON and save to state
+    //   var todos = JSON.parse(this.responseText);
+    //   self.setState({todos: todos});
+    //   {console.log("Requested todos: " + self.state.todos)}
+    // }
     
-    }
-    createRequest.open("GET", "https://cse204.work/todos", true);
-    createRequest.setRequestHeader("x-api-key","f32d02-3f32cc-c59414-4b288d-c7f6a6");
-    createRequest.send();
+    // }
+    // createRequest.open("GET", "https://cse204.work/todos", true);
+    // createRequest.setRequestHeader("x-api-key","f32d02-3f32cc-c59414-4b288d-c7f6a6");
+    // createRequest.send();
 
-    // // Make API call to fetch existing Todos.
-    // fetch('https://cse204.work/todos',{
-    //   "method": "GET",
-    //   "headers":{
-    //     'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
-    //     //'Content-type': 'application/json'
-    //   }
-    // })
-    // //I used Free Code Camp to understand processing response data
-    //   .then(response=>response.json())
-    //   .then((responseData)=>{
-    //     this.setState({todos: responseData});
-    //   })
+    // Make API call to fetch existing Todos.
+    fetch('https://cse204.work/todos',{
+      "method": "GET",
+      "headers":{
+        'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
+        //'Content-type': 'application/json'
+      }
+    })
+    //I used Free Code Camp to understand processing response data
+      .then(response=>response.json())
+      .then((responseData)=>{
+        this.setState({todos: responseData});
+      })
   //     .then(function (response) {
   //       self.setState({todos: JSON.parse(response)});
   //     }
