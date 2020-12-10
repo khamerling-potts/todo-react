@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.addTodo = this.addTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
     
     //this.componentDidMount = this.componentDidMount.bind(this);
     this.state = {
@@ -31,7 +32,7 @@ class App extends Component {
             {this.state.todos.map((todo) =>
               
               // {console.log(todo.id)},
-              <Todo key={todo.id} id={todo.id} text={todo.text} />
+              <Todo key={todo.id} id={todo.id} update = {todo.update} removeTodo = {this.removeTodo} text={todo.text} />
               
             )}
             </ul>
@@ -88,7 +89,47 @@ class App extends Component {
     // })
   }
 
-  
+  removeTodo(todoId){
+    
+    //     fetch('https://cse204.work/todos/'+todo.id,{
+    //       method: 'DELETE',
+    //       headers:{
+    //         'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
+    //         'Content-type': 'application/json'
+    //       }
+    //     })
+    //     .then(response=>response.json())
+    //       .then((responseData)=>{
+    //         this.setState({todos: responseData});
+    //       })
+    //   }
+    
+        const self = this;
+        {console.log(todoId)}
+       // {console.log(todo)}
+        //Initalize AJAX Request
+        var createRequest = new XMLHttpRequest();
+        createRequest.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            // You need the id of the todo you want to delete as a variable.
+            const remainingTodos = self.state.todos.filter((todo) => {
+             // Looping through all todos, if the id of the current todo DOES NOT equal the id of the todo we want to delete, keep it
+                if (todo.id !== todoId) {
+                    return todo;
+                }
+            });
+            // Update state with filtered list using this.setState();
+            self.setState({
+                todos: [remainingTodos]
+            })
+        }     
+        }
+        
+        createRequest.open("DELETE", "https://cse204.work/todos/"+todoId, true);
+        createRequest.setRequestHeader("Content-type", "application/json");
+        createRequest.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
+        createRequest.send();
+    }
 
   componentDidMount() {
     {console.log("componentdidmount activated")}
