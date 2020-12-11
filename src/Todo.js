@@ -18,26 +18,41 @@ class Todo extends Component {
     var idParameter = this.props.id;
     var currentTodo = this.props;
     {console.log("current todo that will be passed to update: " + currentTodo.text)}
-       return (
-           <div id = {this.props.id}>
-               {/* {console.log(this.props.id)} */}
-               
-              {/* {console.log(this.id)} */}
-           {/* <article id="{this.props.id}" className="todo">
-               <button className="check"></button>
-               <p>{this.props.text}</p>
-           </article> */}
-           {/* {console.log(this)} */}
-           
-           
-               <li>
-                  {/* Make the ids a normal number instead of id */}
-                  <button onClick = {this.props.update.bind(this, currentTodo)} id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9'}}>Done</button>
-                  {this.props.text}
-                  <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf'}}>Delete</button>
-                </li>
-           </div>
-       );
+       if (currentTodo.completed){
+        return (
+            <div id = {this.props.id}>
+                {/* {console.log(this.props.id)} */}
+                
+               {/* {console.log(this.id)} */}
+            {/* <article id="{this.props.id}" className="todo">
+                <button className="check"></button>
+                <p>{this.props.text}</p>
+            </article> */}
+            {/* {console.log(this)} */}
+            
+                 <li style = {{color: 'lightgrey'}}>
+                     {/* Make the ids a normal number instead of id */}
+                     <button onClick = {this.props.update.bind(this, currentTodo)} id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9', color: 'black'}}>Done</button>
+                     {this.props.text} 
+                     <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf', color: 'black'}}>Delete</button>
+                 </li>
+            </div>
+            );
+       }
+       else{
+        return (
+            <div id = {this.props.id}>
+                 <li>
+                   {/* Make the ids a normal number instead of id */}
+                   <button onClick = {this.props.update.bind(this, currentTodo)} id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9'}}>Done</button>
+                   {this.props.text}
+                   <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf'}}>Delete</button>
+                 </li>
+            </div>
+            );
+       }
+        
+       
    }
 
    
