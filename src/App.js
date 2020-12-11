@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
-    this.update = this.update.bind(this);
+   // this.update = this.update.bind(this);
     
     //this.componentDidMount = this.componentDidMount.bind(this);
     this.state = {
@@ -78,6 +78,7 @@ class App extends Component {
   createRequest.setRequestHeader("Content-type", "application/json");
   createRequest.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
   createRequest.send(JSON.stringify(data));
+  
     // fetch('https://cse204.work/todos',{
     //   method: 'POST',
     //   headers:{
@@ -133,50 +134,7 @@ class App extends Component {
         createRequest.send();
     }
 
-    update(todo){
-    const self = this;
-    {console.log("todo id that was updated: " + todo.id)}
     
-    //todo.completed = true;
-    var data = {
-      completed: true
-    }
-
-    // Initalize AJAX Request
-    var xhttp3 = new XMLHttpRequest();
-
-    // Response handler
-    xhttp3.onreadystatechange = function() {
-
-        // Wait for readyState = 4 & 200 response
-        if (this.readyState === 4 && this.status === 200) {
-
-            // parse JSON response
-            var todo = JSON.parse(this.responseText);
-
-        } 
-    };
-
-    xhttp3.open("PUT", "https://cse204.work/todos/"+todo.id, true);
-
-    xhttp3.setRequestHeader("Content-type", "application/json");
-    xhttp3.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
-    xhttp3.send(JSON.stringify(data));
-    {console.log(todo.completed)}
-
-    // fetch('https://cse204.work/todos/'+todo.id,{
-    //   method: 'PUT',
-    //   headers:{
-    //     'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
-    //     'Content-type': 'application/json'
-    //   }
-    // })
-    // .then(response=>response.json())
-    //   .then((responseData)=>{
-    //     this.setState({todos: responseData});
-    //   })
-  }
-
   componentDidMount() {
     {console.log("componentdidmount activated")}
     const self = this;
