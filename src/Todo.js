@@ -16,27 +16,31 @@ class Todo extends Component {
     //   className = "todo completed";
     // }
     var idParameter = this.props.id;
+    var currentTodo = this.props;
+    {console.log("current todo that will be passed to update: " + currentTodo.text)}
        return (
            <div id = {this.props.id}>
-               {console.log(this.props.id)}
+               {/* {console.log(this.props.id)} */}
                
               {/* {console.log(this.id)} */}
            {/* <article id="{this.props.id}" className="todo">
                <button className="check"></button>
                <p>{this.props.text}</p>
            </article> */}
-           {console.log(this)}
+           {/* {console.log(this)} */}
            
            
                <li>
                   {/* Make the ids a normal number instead of id */}
-                  <button id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9'}}>Done</button>
+                  <button onClick = {this.props.update.bind(this, currentTodo)} id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9'}}>Done</button>
                   {this.props.text}
                   <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf'}}>Delete</button>
                 </li>
            </div>
        );
    }
+
+   
 
 //    deleteClicked(todoId){
 //     //this.retrieve(todoId);
@@ -59,21 +63,7 @@ class Todo extends Component {
 //       })
 //   }
 
-//   update(todo){
-//     //const self = this;
-//     todo.completed = true;
-//     fetch('https://cse204.work/todos/'+todo.id,{
-//       method: 'PUT',
-//       headers:{
-//         'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
-//         'Content-type': 'application/json'
-//       }
-//     })
-//     .then(response=>response.json())
-//       .then((responseData)=>{
-//         this.setState({todos: responseData});
-//       })
-//   }
+
 
   
 }

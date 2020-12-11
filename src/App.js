@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
+    this.update = this.update.bind(this);
     
     //this.componentDidMount = this.componentDidMount.bind(this);
     this.state = {
@@ -28,11 +29,11 @@ class App extends Component {
           <section id="todos">
             <NewTodo addTodo={this.addTodo} newTodo={this.newTodo} onChange={this.onChange} input={this.state.input}/>
             <ul id="todoList">
-              {console.log(this.state.todos)}
+              {/* {console.log(this.state.todos)} */}
             {this.state.todos.map((todo) =>
               
               // {console.log(todo.id)},
-              <Todo key={todo.id} id={todo.id} update = {todo.update} removeTodo = {this.removeTodo} text={todo.text} />
+              <Todo key={todo.id} id={todo.id} completed = {todo.completed} update = {this.update} removeTodo = {this.removeTodo} text={todo.text} />
               
             )}
             </ul>
@@ -60,7 +61,7 @@ class App extends Component {
       text: newTodoText
     }
 
-    {console.log(data)}
+    //{console.log(data)}
     //var self = this;
     var createRequest = new XMLHttpRequest();
     createRequest.onreadystatechange = function () {
@@ -120,8 +121,9 @@ class App extends Component {
             });
             // Update state with filtered list using this.setState();
             self.setState({
-                todos: [remainingTodos]
+                todos: remainingTodos
             })
+            {console.log(remainingTodos)}
         }     
         }
         
@@ -130,6 +132,24 @@ class App extends Component {
         createRequest.setRequestHeader("x-api-key", "f32d02-3f32cc-c59414-4b288d-c7f6a6");
         createRequest.send();
     }
+
+    update(todo){
+    //const self = this;
+    {console.log("todo id that was updated: " + todo.id)}
+    {console.log(todo.completed)}
+    todo.completed = true;
+    fetch('https://cse204.work/todos/'+todo.id,{
+      method: 'PUT',
+      headers:{
+        'x-api-key': 'f32d02-3f32cc-c59414-4b288d-c7f6a6',
+        'Content-type': 'application/json'
+      }
+    })
+    .then(response=>response.json())
+      .then((responseData)=>{
+        this.setState({todos: responseData});
+      })
+  }
 
   componentDidMount() {
     {console.log("componentdidmount activated")}
