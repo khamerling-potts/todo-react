@@ -20,7 +20,7 @@ class Todo extends Component {
     //{console.log("current todo that will be passed to update: " + currentTodo.text)}
        if (currentTodo.completed){
         return (
-            <div id = {this.props.id}>
+            <div id = {this.props.id} className = "col-sm-12 listdiv">
                 {/* {console.log(this.props.id)} */}
                 
                {/* {console.log(this.id)} */}
@@ -36,18 +36,20 @@ class Todo extends Component {
                      <span className = {this.props.id} >{this.props.text} </span>
                      <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf', color: 'black'}}>Delete</button>
                  </li>
+                 
             </div>
             );
        }
        else{
         return (
-            <div id = {this.props.id}>
+            <div id = {this.props.id} className = "col-sm-12 listdiv">
                  <li>
                    {/* Make the ids a normal number instead of id */}
                    <button onClick = {this.update} id={this.props.id} style={{marginRight: '10px', backgroundColor: '#ceffc9'}}>Done</button>
                    <span className = {this.props.id}>{this.props.text}</span>
                    <button onClick = {this.props.removeTodo.bind(this, idParameter)} id={this.props.id} style={{cssFloat: 'right', backgroundColor: '#ffbdaf'}}>Delete</button>
                  </li>
+
             </div>
             );
        }

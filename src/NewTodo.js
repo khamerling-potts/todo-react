@@ -4,9 +4,9 @@ import './App.css';
 class NewTodo extends Component {
    render() {
        return (
-        <div>
-            <div className="row">
-            <div className="col-sm-12 addbar">
+        <div className = "formdiv">
+            {/* <div className="row">
+            <div className="col-sm-12 addbar"> */}
             <form className="addform" id="addform" onSubmit = {this.props.addTodo}>
                 <label htmlFor="add" className="formlabel">To Do List</label>
                 <div className="input-group">
@@ -16,8 +16,8 @@ class NewTodo extends Component {
                 </div>
                 </div>
             </form>
-            </div>
-            </div>
+            {/* </div>
+            </div> */}
         {/* <article id="{this.props.id}" className="todo">
             <button className="check"></button>
             <p>{this.props.text}</p>

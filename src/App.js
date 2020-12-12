@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
+    this.sortTodos = this.sortTodos.bind(this);
    // this.update = this.update.bind(this);
     
     //this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,21 +28,45 @@ class App extends Component {
           <h1>Kyra Hamerling-Potts' ToDo App</h1>
           </div>
           <section id="todos">
-            <NewTodo addTodo={this.addTodo} newTodo={this.newTodo} onChange={this.onChange} input={this.state.input}/>
-            <ul id="todoList">
-              {/* {console.log(this.state.todos)} */}
-            {this.state.todos.map((todo) =>
+            <div className="row">
+
+              <div className="col-sm-12 addbar">
+              <NewTodo addTodo={this.addTodo} newTodo={this.newTodo} onChange={this.onChange} input={this.state.input}/>
+              </div>
+
+              <div className="col-sm-12 list">
+                <ul id="todoList">
+                {/* {console.log(this.state.todos)} */}
+                {this.state.todos.map((todo) =>
+                
+                // {console.log(todo.id)},
+                <Todo key={todo.id} id={todo.id} completed = {todo.completed} update = {this.update} removeTodo = {this.removeTodo} text={todo.text} />
+                
+                )}
+                </ul>
+              </div>
+
+              <div className="col-sm-12 sortButton">
+                <button onClick = {this.sortTodos} style={{backgroundColor: '#ffefff'}} className = "sortbtn">Sort alphabetically</button>
+              </div>
               
-              // {console.log(todo.id)},
-              <Todo key={todo.id} id={todo.id} completed = {todo.completed} update = {this.update} removeTodo = {this.removeTodo} text={todo.text} />
-              
-            )}
-            </ul>
+            </div>
+            
+            
           </section>
       </div>  
     );
   }
 
+  sortTodos(){
+    this.state.todos.sort(function (a, b) {
+      return a.text.localeCompare(b.text);
+    })
+    this.setState({
+      todos: this.state.todos
+    })
+  }
+  
   onChange = (event) =>{
     // Set the state to the value of the input
     const self = this;
