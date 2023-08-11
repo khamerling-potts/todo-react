@@ -1,10 +1,9 @@
 {
   "name": "todo-react",
-  "homepage": "https://khamerling-potts.github.io/09-todo-react/",
+  "homepage": "https://khamerling-potts.github.io/todo-react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gh-pages": "^2.0.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "^5.0.1"
@@ -25,5 +24,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
 }
